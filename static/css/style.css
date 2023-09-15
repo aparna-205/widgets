@@ -1,0 +1,409 @@
+
+:root {
+  --black: #000000;
+  --almost-black: #263238;
+  --white: #ffffff;
+  --almost-white: #FBFBFB;
+  --grey-light: #CFD8DC;
+  --grey: #B0BEC5;
+  --grey-medium: #78909C;
+  --grey-dark: #455A64;
+  --primary: #1E88E5;
+  --primary-dark: #1976D2;
+  --secondary: #CFD8DC;
+  --secondary-dark: #B0BEC5;
+  --red: #EF4836;
+}
+
+* {
+  position: relative;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--black);
+  background: var(--grey-light);
+}
+
+/* Typography */
+.center {
+  text-align: center;
+}
+
+h1 {
+  margin: 0.5em 0 1em;
+  font-size: 26px;
+  line-height: 1.2;
+  color: var(--almost-black);
+}
+
+h2 {
+  margin: 0.5em 0 1em;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--grey-dark);
+}
+
+p {
+  margin: 24px 0;
+}
+
+/* Cards */
+.card-wrapper {
+  margin: 0 auto;
+  padding: 90px 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  display: flex;
+}
+
+.card {
+  margin: 0 30px 60px;
+  padding: 20px 40px;
+  width: 460px;
+  box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15);
+  border-radius: 5px;
+  background: var(--white);
+}
+
+@media only screen and (max-width: 520px) {
+  .card-wrapper {
+    padding: 30px 0 0;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .card {
+    margin: 0 0 30px;
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+/* Forms */
+form {
+  transition: opacity .15s ease;
+}
+
+form.loading {
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+label {
+  margin: 0 0 2px;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 1px;
+  color: var(--grey-medium);
+  display: block;
+}
+
+.field {
+  margin: 0 0 24px;
+  padding: 11px 16px 9px;
+  width: 100%;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--almost-black);
+  border: 1px solid var(--grey);
+  border-radius: 4px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  display: block;
+  background: var(--almost-white);
+  transition: border-color .15s ease;
+}
+
+.field:focus {
+  border-color: var(--grey-medium);
+  outline: none;
+}
+
+.error {
+  margin: 0;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  color: var(--red);
+}
+
+.error--hidden {
+  display: none;
+}
+
+/* Buttons */
+.btn {
+  margin: 0 0 24px;
+  padding: 11px 30px 10px;
+  font-size: 14px;
+  line-height: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+  background: var(--primary);
+  transition: color .15s ease, background-color .15s ease;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+}
+
+.btn--secondary {
+  color: var(--almost-black);
+  background: var(--secondary);
+}
+
+.btn--secondary:hover {
+  background: var(--secondary-dark);
+}
+
+input[type=submit] {
+  margin: 34px auto 24px;
+  display: block;
+}
+
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust the height as needed */
+}
+
+.card {
+  text-align: center;
+}
+.center {
+  display: block;
+  text-align: center;
+}
+.main {
+ margin-left: 150px;
+ margin- right: 150px;
+ font-size: 150%;
+ padding: 0 2%;
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+table, th, td {
+  border:1px solid black;
+    padding: 3px;
+
+}
+.left-align {
+  text-align: left;
+  margin-right: 0;
+}
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 12px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+    margin-top: 12px;
+
+}
+#config-demo {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  height:850px;
+  position: fixed; /* Fixed position */
+
+}
+
+#myUL li {
+  border: 1px solid #ddd;
+  margin-top: -1px;
+  padding: 8px;
+      background-color: #ced2d0;
+            overflow-y: auto;
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+  display: block
+    overflow-y: auto;
+
+}
+.card2 {
+  display: none; /* Initially hide the card */
+  /* Add styles for the card */
+}
+#myUL li :hover:not(.header) {
+  background-color: #eee;
+}
+
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+    .card2 {
+      position: fixed;
+      right: 0;
+      padding: 16px;
+  }
+.cardm{
+        background-color: #95afde;
+  padding: 15px;
+     font-size: 1.5em;
+       width: 260px;
+  height:120px;
+  text-align: center;
+    border: 1px solid #26086e;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   border-radius: 6px;
+
+}
+.cardz{
+    background-color: #95afde;
+  padding: 15px;
+       width: 260px;
+
+     font-size: 1.5em;
+  height:120px;
+  text-align: center;
+    border: 1px solid #26086e;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   border-radius: 6px;
+  margin-bottom: 20px; /* Add margin at the bottom of each card */
+
+}
+.cardf{
+    background-color: #95afde;
+  padding: 15px;
+       width: 260px;
+     font-size: 1.5em;
+  height:120px;
+  text-align: center;
+    border: 1px solid #26086e;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   border-radius: 6px;
+}
+.carde{
+    background-color: #ffffff;
+  padding: 15px;
+       width: 450px;
+     font-size: 1.5em;
+  height:490px;
+  text-align: center;
+    border: 1px solid #271e54;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   border-radius: 6px;
+}
+.big-box,
+.mini-box {
+    background-color: #10BCFF;
+    color: white;
+    text-align: center;
+    margin: 2px;
+    font-size: 1.5em;
+}
+.big-box {
+    height: 85px;
+    line-height: 65px;
+}
+.mini-box {
+    height: 40px;
+    line-height: 30px;
+}
+
+.cardy{
+    background-color: #fffff;
+  padding: 15px;
+  width: 490px;
+     font-size: 1.5em;
+  height:490px;
+  text-align: center;
+    border: 1px solid #324a23;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   border-radius: 6px;
+  margin-bottom: 10px; /* Add margin at the bottom of each card */
+
+}
+.cardp{
+    background-color: #fffff;
+  padding: 15px;
+  width: 1090px;
+     font-size: 1.5em;
+  height:490px;
+  text-align: center;
+    border: 1px solid #324a23;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   border-radius: 6px;
+  margin-bottom: 10px; /* Add margin at the bottom of each card */
+}
+.cardh{
+    background-color: #324a23;
+  padding: 15px;
+  width: 109px;
+     font-size: 1.5em;
+  height:490px;
+  text-align: center;
+    border: 1px solid #324a23;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   border-radius: 6px;
+  margin-bottom: 10px; /* Add margin at the bottom of each card */
+}
+ .topnav {
+      position: fixed; /* Fixed position */
+      top: 0; /* Position at the top of the page */
+      width: 100%; /* Full width */
+      z-index: 9999; /* Set a high z-index value to ensure it stays on top */
+      background-color: #0c3475;
+          border-radius: 6px;
+      border-bottom: 1px solid #dffd;
+         margin-bottom: 10px; /* Add margin at the bottom of each card */
+    }
+    .topnav p {
+  float: left;
+    color: #d1d7e0; /* Replace with your desired background color */
+  text-align: center;
+  padding: 14px 16px;
+  font-size: 17px;
+}
+        body {
+      padding-top: 40px;
+}

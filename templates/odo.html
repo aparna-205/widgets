@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@latest/dist/apexcharts.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <style>
+        label {
+            font-size: 14px;
+        }
+
+        input {
+            font-size: 14px;
+        }
+
+        .card {
+            margin-bottom: 20px; /* Add spacing between each card */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="row">
+        <div class="col-md-8">
+            <br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card cardf">
+                        <h>Average Km/day</h>
+                        <p>{{c1result}}</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card cardz">
+                        <h>On Count</h>
+                        <p>{{cycle_count}}</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card cardm">
+                        <h>Off Count</h>
+                        <p>{{cycle_count1}}</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    <div>
+            <div class="row">
+                                <div class="col-md-4">
+                    <div class="card carde">
+                                        <div id="myDiv">
+
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-4">
+            <div class="card cardy">
+<div id="horizontal-bar-chart"></div>
+            </div>
+        </div>
+                                        <div class="col-md-4">
+            <div class="card cardy">
+<div id="pie-chart"></div>
+
+            </div>
+        </div>
+
+    </div>
+                    <div class="row">
+                    <div class="col-md-6">
+                    <div class="card cardp">
+  <div id="heatmapDiv"></div>
+
+                        </div>
+                        </div>
+                            </div>
+    <script>
+    // JSON data
+
+    var jsonData = {{data|safe}};
+    // Extract the date and average speed values
+    var dates = Object.keys(jsonData);
+    var speeds = Object.values(jsonData);
+    // Create the trace
+    var trace = {
+        x: dates,
+        y: speeds,
+        mode: 'lines',
+        fill: 'tonexty',
+        type: 'scatter',
+        line: {
+            color: '#2727ba'
+        },
+    };
+    // Create the data array
+    var data = [trace];
+
+    // Create the layout
+    var layout = {
+        title: 'Average Speed',
+        xaxis: {
+            title: 'Date',
+            tickformat: '%b %d', // Format to display month and day (e.g., "May 13")
+            tickangle: -45  // Rotate labels diagonally
+        },
+        yaxis: {
+            title: 'Speed'
+        },
+    };
+
+    // Plot the chart in the specified HTML element
+    Plotly.newPlot('horizontal-bar-chart', data, layout);
+</script>
+
+        <script>
+    // Example data for the bar chart
+// Example data for the pie/donut chart
+var data =  {{json_data|safe}};
+// Extract the data and labels from the data array
+var labels = data.map(item => item.label);
+var values = data.map(item => item.data);
+
+// Create the pie/donut trace
+var trace = {
+  labels: labels,
+  values: values,
+  type: 'pie'
+// Use 'pie' for a pie chart or 'pie' for a donut chart
+};
+
+// Define the layout options
+var layout = {
+  title: 'Top 5 customers' // Replace with your desired chart title
+};
+// Create the plotly chart
+Plotly.newPlot('pie-chart', [trace], layout);
+</script>
+   <script>
+    // Parse the JSON data
+    var jsonData = {{data1|safe}};
+    // Extract the date and average speed values
+    var dates = Object.keys(jsonData);
+    var speeds = Object.values(jsonData);
+    // Create the trace
+    var trace = {
+        x: dates,
+        y: speeds,
+        type: 'bar',
+        marker: {
+            color: '#2727ba'
+        },
+    };
+    // Create the data array
+    var data = [trace];
+
+    // Create the layout
+    var layout = {
+        title: 'Top Speed',
+        xaxis: {
+            title: 'Date',
+            tickformat: '%b %d',
+        },
+        yaxis: {
+            title: 'Speed',
+        }
+    };
+    // Plot the chart
+    Plotly.newPlot('myDiv', data, layout);
+</script>
+
+    <script>
+    // Data
+
+    var data = {{ pivot_table_json | safe }};
+
+    // Extract the time and date values
+    var times = Object.keys(data);
+    var dates = Object.keys(data[times[0]]);
+
+    // Prepare the data for the heatmap
+    var z = dates.map(function(date) {
+      return times.map(function(time) {
+        var value = data[time][date];
+        if (isNaN(value)) {
+          return 0; // Assign 0 to NaN values
+        } else if (value === null) {
+          return -1; // Assign -1 to represent empty spaces
+        } else {
+          return value;
+        }
+      });
+    });
+
+    // Create the custom color scale
+    var customColorScale = [
+       ['0.0', 'rgb(189, 177, 180)'],
+    ['0.111111111111', 'rgb(106, 215, 39)'],
+    ['0.222222222222', 'rgb(7, 184, 48)'],
+    ['0.333333333333', 'rgb(253,174,97)'],
+    ['0.444444444444', 'rgb(254,224,144)'],
+    ['0.555555555556', 'rgb(232, 122, 19)'],
+    ['0.666666666667', 'rgb(214, 103, 114)'],
+    ['0.777777777778', 'rgb(176, 23, 38)'],
+    ['0.888888888889', 'rgb(176, 23, 38)'],
+    ['1.0', 'rgb(179, 9, 26)']
+    ];
+
+    // Create the heatmap trace
+    var heatmapTrace = {
+      x: times,
+      y: dates,
+      z: z,
+      type: 'heatmap',
+      colorscale: customColorScale,
+      colorbar: {
+        title: 'Km',
+        titleside: 'right',
+      },
+    };
+
+    // Create the layout
+// Create the layout
+var layout = {
+  title: 'Utilization Heatmap',
+  xaxis: {
+    title: 'Time',
+    tickvals: times,
+    ticktext: times,
+  },
+
+
+   yaxis: {
+    tickmode: 'array',
+    tickvals: dates,
+    ticktext: dates.map(function(date) {
+      var dateObj = new Date(date);
+      var weekday = dateObj.toLocaleDateString('en-US', { weekday: 'short' });
+      var dateString = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      return dateString +"/"+ weekday; // Concatenate date and weekday
+    }),
+  },
+};
+    // Create the figure
+    var plotData = [heatmapTrace];
+    Plotly.newPlot('heatmapDiv', plotData, layout);
+
+  </script>
+</body>
+</html>

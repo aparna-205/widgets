@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* Styles for the card container */
+        .card {
+            width: 300px;
+            height:150px;/* Adjust the width as needed */
+            margin: 0 auto; /* Center the card horizontally */
+            padding: 60px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            text-align: center;
+                        background-color: #dce2e6;
+        }
+        /* Styles for the links */
+        .center {
+            display: block;
+            margin: 10px auto; /* Center the links horizontally */
+            text-align: center;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+     .image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh; /* Optional: Set the height to fill the viewport vertically */
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+    </style>
+</head>
+
+<div class="image-container">
+  <img src="static/istockphoto-505476352-2048x2048.jpg" alt="Centered Image">
+</div>
+
+
+<body>
+    <div class="card">
+        <a class="center" href="{{url_for('get_odo')}}">Main Dashboard</a>
+        <br>
+        <br>
+        <a class="center" href="{{url_for('get_odo1')}}">Acceleration counts</a>
+    </div>
+</body>
+</html>
