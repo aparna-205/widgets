@@ -10,7 +10,7 @@ from flask import Flask, render_template, request, jsonify
 import mysql.connector
 import pandas as pd
 warnings.filterwarnings("ignore")
-application = Flask(__name__)
+app = Flask(__name__)
 def get_db_connection():
     return mysql.connector.connect(
         host='database-1.cbjabnlglbz6.ap-south-1.rds.amazonaws.com',
@@ -19,24 +19,24 @@ def get_db_connection():
         password='ingo1234',
         auth_plugin='mysql_native_password'
 )
-@application.route('/', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 def login1():
     return render_template('dashboard.html',)
-@application.route("/dashboard", methods=["GET", "POST"])
+@app.route("/dashboard", methods=["GET", "POST"])
 def get_odo():
     db_connection = get_db_connection()
     cursor = db_connection.cursor()
     cursor.execute("SHOW TABLES")
     table_names = [table[0] for table in cursor.fetchall()]
     return render_template("index.html", table_names=table_names, c1result=None)
-@application.route("/dashboard1", methods=["GET", "POST"])
+@app.route("/dashboard1", methods=["GET", "POST"])
 def get_odo1():
     db_connection = get_db_connection()
     cursor = db_connection.cursor()
     cursor.execute("SHOW TABLES")
     table_names = [table[0] for table in cursor.fetchall()]
     return render_template("index1.html", table_names=table_names, c1result=None)
-@application.route("/range", methods=["POST", "GET"])
+@app.route("/range", methods=["POST", "GET"])
 def range():
     if request.method == "POST":
         start_date = request.form['start']
@@ -135,7 +135,7 @@ def range():
             pivot_table_json = pivot_table.to_json(orient='columns')
             print(pivot_table_json)
         return jsonify({'htmlresponse': render_template('odo.html',data=df_json,data1=df1_json, c1result=formatted_num,count_result=id_count,cycle_count=cycle_count,cycle_count1=cycle_count1,id_count=id_count,json_data=json_data,pivot_table_json=pivot_table_json)})
-@application.route("/count", methods=["POST"])
+@app.route("/count", methods=["POST"])
 def count():
     if request.method == "POST":
             start_date = request.form['start']
@@ -179,4 +179,4 @@ def count():
             return jsonify({'htmlresponse': render_template('acceleration.html', id_count=id_count, results=results,json_data1=json_data1)})
 
 if __name__ == '__main__':
- application.run(debug=True, port="3217",threaded=True)
+ app.run(debug=True, port="3217",threaded=True)
